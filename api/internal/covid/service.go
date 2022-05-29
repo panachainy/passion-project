@@ -17,7 +17,7 @@ var (
 )
 
 type CovidService interface {
-	GetToday()
+	GetToday() (CovidClientResponse, error)
 }
 
 type CovidServiceImp struct {
@@ -34,22 +34,19 @@ func ProviderService(c *config.Configuration) *CovidServiceImp {
 	return serviceInstance
 }
 
-func (s *CovidServiceImp) GetToday() {
+func (s *CovidServiceImp) GetToday() (CovidClientResponse, error) {
 	client := resty.New()
 	client.SetTimeout(30 * time.Second)
 
 	url := "https://covid19.ddc.moph.go.th/api/Cases/today-cases-all"
 	var result CovidClientResponse
 
-	_, err := client.R().
+	if _, err := client.R().
 		SetResult(&result).
-		Get(url)
-	if err != nil {
+		Get(url); err != nil {
 		logrus.Errorf("GetToday 1: %v", err.Error())
-		// return "", err
+		return nil, err
 	}
 
-	logrus.Infoln("result", result)
-
-	// return result.Result, nil
+	return result, nil
 }

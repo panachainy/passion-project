@@ -1,6 +1,7 @@
 package covid
 
 import (
+	"fmt"
 	"sync"
 
 	"github.com/gofiber/fiber/v2"
@@ -32,7 +33,14 @@ func ProviderHandler(s CovidService) *CovidHandlerImp {
 }
 
 func (h *CovidHandlerImp) GetToday(c *fiber.Ctx) error {
-	h.Service.GetToday()
+	res, err := h.Service.GetToday()
+	if err != nil {
+		return fiber.NewError(fiber.StatusServiceUnavailable,
+			fmt.Sprintf("GetToday 2: %v", err.Error()))
+	}
 
-	return c.SendString("up")
+	return c.JSON(fiber.Map{
+		"data":    res,
+		"message": "success",
+	})
 }

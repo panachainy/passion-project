@@ -50,7 +50,7 @@ func InitRouter(app *fiber.App, apiPrefix string, appConfig *build.ApplicationIm
 		return c.SendString("up")
 	})
 
-	router.Get("/s", appConfig.CovidHandler.GetToday)
+	router.Get("/today", appConfig.CovidHandler.GetToday)
 
 	router.Use(func(c *fiber.Ctx) error {
 		return c.Status(404).JSON(fiber.Map{
