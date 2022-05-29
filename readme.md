@@ -32,8 +32,9 @@ But I need to show you this is project layout that we do.
 
 ### Develop WEB
 
-- yarn
-- yarn dev
+- Go to web directory `cd web`
+- Install dependency with yarn `yarn`
+- Start web `yarn dev`
 
 ## REF
 
