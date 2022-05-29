@@ -51,7 +51,7 @@ func (h *CovidHandlerImp) GetToday(c *fiber.Ctx) error {
 			fmt.Sprintf("GetToday 2: %v", err.Error()))
 	}
 
-	h.Cache.Set(TODAY_CACHE_KEY, res[0], CACHE_TIME)
+	_ = h.Cache.Set(TODAY_CACHE_KEY, res[0], CACHE_TIME)
 
 	return c.JSON(fiber.Map{
 		"data":    res[0],
