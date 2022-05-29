@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"sync"
 
+	"covid-19-api/internal/platform/storage/cache"
+
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -18,13 +20,15 @@ type CovidHandler interface {
 
 type CovidHandlerImp struct {
 	Service CovidService
+	Cache   cache.CacheInterface
 }
 
-func ProviderHandler(s CovidService) *CovidHandlerImp {
+func ProviderHandler(s CovidService, c cache.CacheInterface) *CovidHandlerImp {
 	hOnce.Do(
 		func() {
 			handler = &CovidHandlerImp{
 				Service: s,
+				Cache:   c,
 			}
 		},
 	)

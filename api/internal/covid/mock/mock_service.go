@@ -5,6 +5,7 @@
 package mock
 
 import (
+	covid "covid-19-api/internal/covid"
 	reflect "reflect"
 
 	gomock "github.com/golang/mock/gomock"
@@ -34,9 +35,12 @@ func (m *MockCovidService) EXPECT() *MockCovidServiceMockRecorder {
 }
 
 // GetToday mocks base method.
-func (m *MockCovidService) GetToday() {
+func (m *MockCovidService) GetToday() (covid.CovidClientResponse, error) {
 	m.ctrl.T.Helper()
-	m.ctrl.Call(m, "GetToday")
+	ret := m.ctrl.Call(m, "GetToday")
+	ret0, _ := ret[0].(covid.CovidClientResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
 }
 
 // GetToday indicates an expected call of GetToday.
