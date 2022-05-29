@@ -37,11 +37,21 @@ func ProviderHandler(s CovidService, c cache.CacheInterface) *CovidHandlerImp {
 }
 
 func (h *CovidHandlerImp) GetToday(c *fiber.Ctx) error {
+	var covidSerializer CovidSerializer
+	if err := h.Cache.Get(TODAY_CACHE_KEY, &covidSerializer); err == nil {
+		return c.JSON(fiber.Map{
+			"data":    covidSerializer,
+			"message": "success",
+		})
+	}
+
 	res, err := h.Service.GetToday()
 	if err != nil {
 		return fiber.NewError(fiber.StatusServiceUnavailable,
 			fmt.Sprintf("GetToday 2: %v", err.Error()))
 	}
+
+	h.Cache.Set(TODAY_CACHE_KEY, res[0], CACHE_TIME)
 
 	return c.JSON(fiber.Map{
 		"data":    res[0],
