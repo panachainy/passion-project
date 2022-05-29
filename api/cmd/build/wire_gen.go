@@ -8,12 +8,15 @@ package build
 
 import (
 	"covid-19-api/cmd/config"
+	"covid-19-api/internal/covid"
 )
 
 // Injectors from wire.go:
 
 func Wire(envFile string) (*ApplicationImp, error) {
 	configuration := config.ProviderConfig(envFile)
-	applicationImp := ProviderApp(configuration)
+	covidServiceImp := covid.ProviderService(configuration)
+	covidHandlerImp := covid.ProviderHandler(covidServiceImp)
+	applicationImp := ProviderApp(configuration, covidHandlerImp)
 	return applicationImp, nil
 }

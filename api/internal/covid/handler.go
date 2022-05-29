@@ -32,5 +32,7 @@ func ProviderHandler(s CovidService) *CovidHandlerImp {
 }
 
 func (h *CovidHandlerImp) GetToday(c *fiber.Ctx) error {
-	return nil
+	h.Service.GetToday()
+
+	return c.SendString("up")
 }

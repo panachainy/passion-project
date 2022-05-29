@@ -5,6 +5,8 @@
 package mock
 
 import (
+	reflect "reflect"
+
 	gomock "github.com/golang/mock/gomock"
 )
 
@@ -29,4 +31,16 @@ func NewMockCovidService(ctrl *gomock.Controller) *MockCovidService {
 // EXPECT returns an object that allows the caller to indicate expected use.
 func (m *MockCovidService) EXPECT() *MockCovidServiceMockRecorder {
 	return m.recorder
+}
+
+// GetToday mocks base method.
+func (m *MockCovidService) GetToday() {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "GetToday")
+}
+
+// GetToday indicates an expected call of GetToday.
+func (mr *MockCovidServiceMockRecorder) GetToday() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetToday", reflect.TypeOf((*MockCovidService)(nil).GetToday))
 }
