@@ -28,6 +28,7 @@ But I need to show you this is project layout that we do.
 ## WEB
 
 - Nuxtjs
+- Vuetify.js
 
 ### Develop WEB
 
