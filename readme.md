@@ -8,6 +8,11 @@ But I need to show you this is project layout that we do.
 - Fiber - Go
 - Redis - Buffer response
 
+### API Docker
+
+- Go to directory api `cd api`
+- Run API with docker compose `docker-compose up`
+
 ### Prerequisites API
 
 - air
