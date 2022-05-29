@@ -38,3 +38,7 @@ But I need to show you this is project layout that we do.
 
 - [TodayCase](https://covid19.ddc.moph.go.th/api/Cases/today-cases-all)
 - [Timeline case all](https://covid19.ddc.moph.go.th/api/Cases/timeline-cases-all)
+
+## Example Web
+
+![example-covid-page](docs/imgs/2022-05-29-22-26-33.png)
