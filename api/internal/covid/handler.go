@@ -40,7 +40,7 @@ func (h *CovidHandlerImp) GetToday(c *fiber.Ctx) error {
 	}
 
 	return c.JSON(fiber.Map{
-		"data":    res,
+		"data":    res[0],
 		"message": "success",
 	})
 }
