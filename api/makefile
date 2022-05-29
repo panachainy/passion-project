@@ -37,8 +37,7 @@ docker.build:
 	docker build -t covid-19-api .
 
 docker.run:
-	docker run --rm -it -p 9090:9090 covid-19-api \
-    	-e DATABASE_DSN="test"
+	docker run --rm -it -p 9090:9090 covid-19-api
 
 mock:
 	cd mocks && docker run -d --rm -v $(ROOT_DIR)/mocks/apib:/blueprints -p 3500:3000 burakince/drakov --watch -f '/blueprints/*.apib'

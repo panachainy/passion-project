@@ -20,8 +20,6 @@ func main() {
 }
 
 func SetupApp() (*fiber.App, *build.ApplicationImp) {
-	// config.PrintConfig()
-
 	appConfig, err := build.Wire(".env")
 	if err != nil {
 		panic(err)
@@ -38,6 +36,7 @@ func SetupApp() (*fiber.App, *build.ApplicationImp) {
 	return app, appConfig
 }
 
+// should move to new file
 func InitRouter(app *fiber.App, apiPrefix string, appConfig *build.ApplicationImp) {
 	var router fiber.Router
 

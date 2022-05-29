@@ -18,8 +18,6 @@ var (
 		APP_PORT:  9090,
 		LOG_LEVEL: "debug",
 
-		DATABASE_TEST: false,
-
 		REDIS_TLS: false,
 	}
 )
@@ -32,9 +30,6 @@ type Configuration struct {
 	APP_PUBLIC_URL string `mapstructure:"APP_PUBLIC_URL"`
 
 	LOG_LEVEL string `mapstructure:"LOG_LEVEL"`
-
-	DATABASE_DSN  string `mapstructure:"DATABASE_DSN" validate:"required"`
-	DATABASE_TEST bool   `mapstructure:"DATABASE_TEST"`
 
 	REDIS_HOST     string `mapstructure:"REDIS_HOST"`
 	REDIS_PASSWORD string `mapstructure:"REDIS_PASSWORD"`
